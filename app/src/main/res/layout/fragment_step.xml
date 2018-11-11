@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorStepsBackground"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:background="@color/colorStep">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_step_name"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:padding="4dp"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/tv_step_description"
+                android:layout_width="match_parent"
+                android:layout_height="128dp"
+                android:padding="8dp" />
+        </LinearLayout>
+
+
+    </android.support.v7.widget.CardView>
+
+
+
+    <FrameLayout
+        android:id="@+id/main_media_frame"
+        android:layout_width="match_parent"
+        android:layout_height="256dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/msg_no_media_available"
+            android:id="@+id/tv_no_media_available"
+            android:visibility="gone"/>
+        <com.google.android.exoplayer2.ui.SimpleExoPlayerView
+            android:id="@+id/ep_step_player"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            />
+    </FrameLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_prev_step"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/btn_previous" />
+
+        <Button
+            android:id="@+id/btn_next_step"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/btn_next" />
+    </LinearLayout>
+
+
+</LinearLayout>
