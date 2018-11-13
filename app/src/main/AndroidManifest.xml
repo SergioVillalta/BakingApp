@@ -38,7 +38,10 @@
                 android:resource="@xml/baking_widget_provider_info" />
         </receiver>
 
-        <service android:name=".BakingWidgetService" />
+        <service android:name=".BakingWidgetService"
+            android:permission="android.permission.BIND_REMOTEVIEWS"/>
+        <service android:name=".BakingWidgetUpdateService"
+            android:exported="false"/>
     </application>
 
 </manifest>

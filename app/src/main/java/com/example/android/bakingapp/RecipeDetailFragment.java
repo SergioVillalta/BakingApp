@@ -27,7 +27,7 @@ public class RecipeDetailFragment extends Fragment implements StepsAdapter.StepO
     private static final String SELECTED_RECIPE_KEY = "selected_recipe";
 
 
-    private Recipe mSelectedRecipe;
+    public static Recipe mSelectedRecipe;
 
     @BindView(R.id.rv_recipe_steps)
     RecyclerView mStepsRecyclerView;
@@ -78,6 +78,13 @@ public class RecipeDetailFragment extends Fragment implements StepsAdapter.StepO
         return rootView;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        BakingWidgetUpdateService.startActionUpdateBakingWidget(getContext());
+        BakingWidgetProvider.sendRefreshBroadcast(getContext());
+    }
 
     @Override
     public void onAttach(Context context) {

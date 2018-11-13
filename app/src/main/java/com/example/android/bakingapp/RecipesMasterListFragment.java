@@ -87,7 +87,9 @@ public class RecipesMasterListFragment extends Fragment implements RecipesAdapte
     @Override
     public void onResume() {
         super.onResume();
-        BakingWidgetService.startActionUpdateBakingWidget(getContext());
+        BakingWidgetUpdateService.startActionUpdateBakingWidget(getContext());
+        BakingWidgetProvider.sendRefreshBroadcast(getContext());
+
     }
 
     @Override
@@ -176,6 +178,8 @@ public class RecipesMasterListFragment extends Fragment implements RecipesAdapte
         bundle.putSerializable(RECIPE_SELECTED_KEY,recipe);
         recipeDetailIntent.putExtra(RECIPE_SELECTED_KEY,bundle);
         startActivity(recipeDetailIntent);
+
+
     }
 
     @Override
@@ -215,7 +219,9 @@ public class RecipesMasterListFragment extends Fragment implements RecipesAdapte
                 showRecipesView();
                 mRecipesAdapter.setRecipesData(recipesData);
                 mRecyclerView.scrollBy(0,mRecipesRecyclerViewOffset);
-                BakingWidgetService.startActionUpdateBakingWidget(getContext());
+                //BakingWidgetUpdateService.startActionUpdateBakingWidget(getContext());
+                //BakingWidgetProvider.sendRefreshBroadcast(getContext());
+
             } else {
                 showErrorMessage();
                 mErrorMessageDisplay.setText("There was an error retrieving the information. " + mErrorMessage);

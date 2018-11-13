@@ -6,36 +6,17 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.Nullable;
+import android.util.Log;
+import android.widget.RemoteViewsService;
 
-public class BakingWidgetService extends IntentService {
+public class BakingWidgetService extends RemoteViewsService {
 
-    public static final String ACTION_UPDATE_BAKING_WIDGET = "com.example.android.bakingapp.action.update_baking_widgets";
-
-    public BakingWidgetService() {
-        super("BakingWidgetService");
-    }
+    private static final String TAG = "WidgetService";
 
     @Override
-    protected void onHandleIntent(Intent intent) {
-        if (intent != null) {
-            final String action = intent.getAction();
-            if (ACTION_UPDATE_BAKING_WIDGET.equals(action)) {
-                handleActionUpdateBakingApp();
-            }
-        }
-    }
+    public RemoteViewsService.RemoteViewsFactory onGetViewFactory(Intent intent) {
 
-    private void handleActionUpdateBakingApp() {
-        AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(this);
-        int[] appWidgetIds = appWidgetManager.getAppWidgetIds(new ComponentName(this, BakingWidgetProvider.class));
-        //Now update all widgets
-        BakingWidgetProvider.updateBakingWidgets(this, appWidgetManager, RecipesMasterListFragment.getImageNameRecipes(getApplicationContext()), appWidgetIds);
-    }
-
-    public static void startActionUpdateBakingWidget(Context context) {
-        Intent intent = new Intent(context, BakingWidgetService.class);
-        intent.setAction(ACTION_UPDATE_BAKING_WIDGET);
-        context.startService(intent);
+        return (new BakingWidgetFactory(this.getApplicationContext(), intent));
     }
 
 
